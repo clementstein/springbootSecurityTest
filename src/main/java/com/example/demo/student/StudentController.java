@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
 
 @RestController
 @RequestMapping("api/students")
@@ -24,5 +25,10 @@ public class StudentController {
                 .filter(student -> studentId.equals(student.getStudentId()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("User with id " + studentId + "does not exist."));
+    }
+
+    @GetMapping(path = "/")
+    public List<Student> getStudents(){
+        return STUDENTS;
     }
 }
